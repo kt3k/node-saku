@@ -1,0 +1,46 @@
+{
+  "name": "saku",
+  "version": "0.1.0",
+  "description": "Markdown-based task runner",
+  "main": "index.js",
+  "bin": "./bin/saku.js",
+  "scripts": {
+    "lint": "standard",
+    "test": "kocha src{/,/**/}__tests__/*.js"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --write",
+      "standard --fix",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kt3k/saku.git"
+  },
+  "keywords": [
+    "make",
+    "task",
+    "runner",
+    "cli"
+  ],
+  "author": "Yoshiya Hinosawa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kt3k/saku/issues"
+  },
+  "homepage": "https://github.com/kt3k/saku#readme",
+  "dependencies": {
+    "action-selector": "^1.0.1",
+    "colo": "^0.3.2",
+    "minimisted": "^2.0.0",
+    "remark": "^9.0.0"
+  },
+  "devDependencies": {
+    "kocha": "^1.9.1",
+    "lint-staged": "^6.0.1",
+    "prettier": "^1.10.2",
+    "standard": "^10.0.3"
+  }
+}
