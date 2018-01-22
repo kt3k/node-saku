@@ -6,7 +6,8 @@
   "bin": "./bin/saku.js",
   "scripts": {
     "lint": "standard",
-    "test": "kocha src{/,/**/}__tests__/*.js"
+    "test": "kocha src{/,/**/}__tests__/*.js",
+    "cov": "nyc --reporter=text-summary --reporter=lcov npm test"
   },
   "lint-staged": {
     "*.js": [
@@ -40,6 +41,7 @@
   "devDependencies": {
     "kocha": "^1.9.1",
     "lint-staged": "^6.0.1",
+    "nyc": "^11.4.1",
     "prettier": "^1.10.2",
     "standard": "^10.0.3"
   }
