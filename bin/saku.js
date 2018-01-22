@@ -3,10 +3,13 @@
 const Cli = require('../src/cli')
 
 require('minimisted')(argv => { new Cli(argv).main() }, {
-  boolean: ['version', 'help', 'info'],
+  string: ['cwd'],
+  boolean: ['version', 'help', 'info', 'parallel', 'sequential'],
   alias: {
     v: 'version',
     h: 'help',
-    i: 'info'
+    i: 'info',
+    s: 'sequential',
+    p: 'parallel'
   }
 })

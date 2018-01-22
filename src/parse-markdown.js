@@ -4,6 +4,6 @@ const { Task } = require('./domain')
  * @param {string} text The markdown text
  * @return {Task[]}
  */
-const parseMarkdown = text => {
+module.exports = text => {
   return new Task.Factory().createFromMarkdown(text)
 }
