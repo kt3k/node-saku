@@ -2,13 +2,15 @@
 class Task {
   /**
    * @param {string} name The name
-   * @param {Object} options The options
+   * @param {string} description The commands
    * @param {string[]} commands The commands
+   * @param {Object} options The options
    */
-  constructor (name, options, commands) {
+  constructor ({ name, description, commands, options }) {
     this.name = name
-    this.options = options
+    this.description = description
     this.commands = commands
+    this.options = options
   }
 }
 
