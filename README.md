@@ -16,11 +16,13 @@ First, create a markdown file `saku.md`:
 
 ```md
 # build
-- desc: Build the go binary.
+> Build the go binary.
+
 go build -v -i main.go
 
 # test
-- desc: Run all the go tests.
+> Run all the go tests.
+
 go test -race ./...
 
 # js
