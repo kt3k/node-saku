@@ -98,7 +98,7 @@ If you need to invoke tasks from another task, use saku command in saku.md.
     saku -s js minify
 ```
 
-If you need to invoke tasks in paralle l from another task, use saku command with `-p` option.
+If you need to invoke tasks in parallel from another task, use `saku -p`.
 
 ```md
 # watch
