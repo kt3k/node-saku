@@ -5,9 +5,7 @@
   "main": "index.js",
   "bin": "./bin/saku.js",
   "scripts": {
-    "lint": "standard",
-    "test": "kocha src{/,/**/}__tests__/*.js",
-    "cov": "nyc --reporter=text-summary --reporter=lcov npm test"
+    "test": "kocha src{/,/**/}__tests__/*.js"
   },
   "lint-staged": {
     "*.js": [

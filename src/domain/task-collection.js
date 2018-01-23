@@ -62,7 +62,7 @@ class TaskCollection extends EventEmitter {
   /**
    * Runs the task in parallel and abort them when the first one finished.
    */
-  async runInRace({ cwd }) {
+  async runInRace ({ cwd }) {
     await Promise.race(this.tasks.map(task => task.run({ cwd })))
 
     this.tasks.forEach(task => task.abort())

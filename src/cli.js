@@ -10,7 +10,6 @@ const pkg = require('../package')
 const CLI_NAME = pkg.name
 const TASK_FILENAME = 'saku.md'
 
-
 class Cli {
   constructor (argv) {
     this.argv = argv
@@ -117,6 +116,11 @@ Options:
     tasks.on('task', ({ task: { name }, command }) => {
       logger.logPlus(command)
     })
+
+    if (parallel && sequential) {
+      console.log(`${colo.red('Error')}: both --parallel and --sequential are set`)
+      process.exit(1)
+    }
 
     if (parallel && race) {
       logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
