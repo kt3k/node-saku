@@ -1,13 +1,24 @@
+const EventEmitter = require('events')
+
 /**
  * The collection model of Tasks.
  */
-class TaskCollection {
+class TaskCollection extends EventEmitter {
   /**
    * @param {Task[]} tasks The tasks
    */
   constructor (tasks) {
+    super()
+
     this.tasks = tasks || []
     this.taskNames = tasks.map(task => task.name)
+    this.bindEvents()
+  }
+
+  bindEvents () {
+    this.tasks.forEach(task => {
+      task.on('task', e => this.emit('task', e))
+    })
   }
 
   get length () {
@@ -38,6 +49,15 @@ class TaskCollection {
    */
   async runParallel ({ cwd }) {
     return Promise.all(this.tasks.map(task => task.run({ cwd })))
+  }
+
+  /**
+   * Runs the task in parallel and abort them when the first one finished.
+   */
+  async runInRace({ cwd }) {
+    await Promise.race(this.tasks.map(task => task.run({ cwd })))
+
+    this.tasks.forEach(task => task.abort())
   }
 
   /**

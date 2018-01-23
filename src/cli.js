@@ -6,7 +6,7 @@ const logger = require('./logger')
 
 const pkg = require('../package')
 const CLI_NAME = pkg.name
-const TASK_FILENAME = 'task.md'
+const TASK_FILENAME = 'saku.md'
 
 class Cli {
   constructor (argv) {
@@ -49,12 +49,16 @@ class Cli {
 Usage: ${colo.cyan(this.cliName)} [options] <task, ...>
 
 Options:
-  -v, --version       Shows the version number and exits.
-  -h, --help          Shows the help message and exits.
-  -i, --info          Shows the task information and exits.
-  -p, --parallel      Runs tasks in parallel. Default false.
-  -s, --serial        Runs tasks in serial. Default true.
-  --cwd <path>        Sets the current directory.
+  -v, --version   - - Shows the version number and exits.
+  -h, --help  - - - - Shows the help message and exits.
+  -i, --info  - - - - Shows the task information and exits.
+  -p, --parallel  - - Runs tasks in parallel. Default false.
+  -s, --serial    - - Runs tasks in serial. Default true.
+  --cwd <path>    - - Sets the current directory.
+  -r, --race    - - - Set the flag to kill all tasks when a task
+                      finished with zero. This option is valid only
+                      with 'parallel' option.
+  -q, --quiet     - - Stops the logging.
 `)
   }
 
@@ -80,6 +84,9 @@ Options:
   async 'action:run' () {
     const {
       cwd,
+      parallel,
+      race,
+      sequential,
       _: taskNames
     } = this.argv
 
@@ -95,7 +102,15 @@ Options:
     const tasks = allTasks.filterByNames(taskNames)
     const names = tasks.taskNames.join(', ')
 
-    if (this.argv.parallel) {
+    tasks.on('task', ({ task: { name }, command }) => {
+      console.log(`+${command}`)
+    })
+
+    if (parallel && race) {
+      logger.log(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      await tasks.runInRace({ cwd })
+      logger.log(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+    } else if (parallel) {
       logger.log(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
       await tasks.runParallel({ cwd })
       logger.log(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)

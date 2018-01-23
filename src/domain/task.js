@@ -1,6 +1,7 @@
+const EventEmitter = require('events')
 const spawn = require('@expo/spawn-async')
 
-class Task {
+class Task extends EventEmitter {
   /**
    * @param {string} name The name
    * @param {string} description The commands
@@ -8,6 +9,8 @@ class Task {
    * @param {Object} options The options
    */
   constructor ({ name, description, commands, options }) {
+    super()
+
     this.name = name
     this.description = description
     this.commands = commands
@@ -27,10 +30,27 @@ class Task {
    * @param {string} cwd The working dir
    */
   async runSingle (command, { cwd }) {
+    this.emit('task', { task: this, command })
+
     const args = command.split(/\s+/)
     const cmd = args.shift()
 
-    await spawn(cmd, args, { cwd, stdio: 'inherit' })
+    const promise = spawn(cmd, args, { cwd, stdio: 'inherit' })
+
+    this.child = promise.child
+
+    await promise
+  }
+
+  /**
+   * Aborts the task.
+   * TODO: kill child process as well
+   * TODO: windows support
+   */
+  abort () {
+    if (!this.child.killed) {
+      this.child.kill()
+    }
   }
 }
 
