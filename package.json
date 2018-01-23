@@ -5,7 +5,7 @@
   "main": "index.js",
   "bin": "./bin/saku.js",
   "scripts": {
-    "test": "kocha src{/,/**/}__tests__/*.js"
+    "test": "saku test"
   },
   "lint-staged": {
     "*.js": [
@@ -38,9 +38,11 @@
     "remark": "^9.0.0"
   },
   "devDependencies": {
+    "espower-loader": "^1.2.2",
     "kocha": "^1.9.1",
     "lint-staged": "^6.0.1",
     "nyc": "^11.4.1",
+    "power-assert": "^1.4.4",
     "prettier": "^1.10.2",
     "standard": "^10.0.3"
   }

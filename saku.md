@@ -1,7 +1,7 @@
 # test
 > Runs unit tests
 
-    npx kocha src{/,/**/}__tests__/*.js
+    npx kocha --require src/__tests__/helper src{/,/**/}__tests__/*.js
 
 # lint
 > Runs lint checks
