@@ -4,9 +4,12 @@ const fs = require('fs')
 const colo = require('colo')
 const logger = require('./logger')
 
+const actionInfo = require('./actions/info')
+
 const pkg = require('../package')
 const CLI_NAME = pkg.name
 const TASK_FILENAME = 'saku.md'
+
 
 class Cli {
   constructor (argv) {
@@ -66,7 +69,11 @@ Options:
    * Shows the task information
    */
   'action:info' () {
-    const allTasks = parse(this.getTaskFile())
+    this['action:version']()
+
+    console.log()
+
+    actionInfo(parse(this.getTaskFile()))
   }
 
   getTaskFile () {
@@ -85,10 +92,15 @@ Options:
     const {
       cwd,
       parallel,
+      quiet,
       race,
       sequential,
       _: taskNames
     } = this.argv
+
+    if (quiet) {
+      logger.quiet()
+    }
 
     const allTasks = parse(this.getTaskFile())
 
@@ -103,21 +115,21 @@ Options:
     const names = tasks.taskNames.join(', ')
 
     tasks.on('task', ({ task: { name }, command }) => {
-      console.log(`+${command}`)
+      logger.logPlus(command)
     })
 
     if (parallel && race) {
-      logger.log(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
       await tasks.runInRace({ cwd })
-      logger.log(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
     } else if (parallel) {
-      logger.log(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
       await tasks.runParallel({ cwd })
-      logger.log(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
     } else {
-      logger.log(`Run ${colo.magenta(names)} in ${colo.cyan('series')}`)
+      logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('series')}`)
       await tasks.runSequential({ cwd })
-      logger.log(`Finish ${colo.magenta(names)} in ${colo.cyan('series')}`)
+      logger.logSaku(`Finish ${colo.magenta(names)} in ${colo.cyan('series')}`)
     }
   }
 }

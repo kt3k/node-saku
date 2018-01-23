@@ -16,13 +16,21 @@ class TaskCollection extends EventEmitter {
   }
 
   bindEvents () {
-    this.tasks.forEach(task => {
+    new Set(this.tasks).forEach(task => {
       task.on('task', e => this.emit('task', e))
     })
   }
 
   get length () {
     return this.tasks.length
+  }
+
+  /**
+   * Runs f for each task.
+   * @param {Function} f The function
+   */
+  forEach (f) {
+    this.tasks.forEach(f)
   }
 
   /**

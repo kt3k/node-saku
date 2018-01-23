@@ -27,7 +27,6 @@ minify -o public/style.css src/css
       assert(tasks instanceof Task.Collection)
       assert.strictEqual(tasks.length, 4)
       assert(tasks.tasks[0] instanceof Task)
-      console.log(JSON.stringify(tasks, null, 2))
     })
   })
 })
