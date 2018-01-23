@@ -17,19 +17,14 @@ class Cli {
   }
 
   main () {
-    const {
-      version,
-      help,
-      info,
-      _: tasks
-    } = this.argv
+    const { version, help, info, _: tasks } = this.argv
 
     select(this, {
       version,
       help,
       info: info || tasks.length === 0,
       run: true
-    }).on('action', async (action) => {
+    }).on('action', async action => {
       try {
         await action.call(this)
       } catch (e) {
@@ -88,14 +83,7 @@ Options:
    * Runs the tasks
    */
   async 'action:run' () {
-    const {
-      cwd,
-      parallel,
-      quiet,
-      race,
-      sequential,
-      _: taskNames
-    } = this.argv
+    const { cwd, parallel, quiet, race, sequential, _: taskNames } = this.argv
 
     if (quiet) {
       logger.quiet()
@@ -118,18 +106,24 @@ Options:
     })
 
     if (parallel && sequential) {
-      console.log(`${colo.red('Error')}: both --parallel and --sequential are set`)
+      console.log(
+        `${colo.red('Error')}: both --parallel and --sequential are set`
+      )
       process.exit(1)
     }
 
     if (parallel && race) {
       logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
       await tasks.runInRace({ cwd })
-      logger.logSaku(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(
+        `Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`
+      )
     } else if (parallel) {
       logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
       await tasks.runParallel({ cwd })
-      logger.logSaku(`Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`)
+      logger.logSaku(
+        `Finish ${colo.magenta(names)} in ${colo.cyan('parallel')}`
+      )
     } else {
       logger.logSaku(`Run ${colo.magenta(names)} in ${colo.cyan('series')}`)
       await tasks.runSequential({ cwd })

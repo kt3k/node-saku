@@ -21,8 +21,10 @@ class Task extends EventEmitter {
    * Runs all the commands sequentially.
    */
   async run ({ cwd }) {
-    return this.commands
-      .reduce((p, command) => p.then(() => this.runSingle(command, { cwd })), Promise.resolve())
+    return this.commands.reduce(
+      (p, command) => p.then(() => this.runSingle(command, { cwd })),
+      Promise.resolve()
+    )
   }
 
   /**

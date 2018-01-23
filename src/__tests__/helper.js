@@ -1,1 +1,1 @@
-require('espower-loader')({ pattern: '{src,test}/**/*.js' });
+require('espower-loader')({ pattern: '{src,test}/**/*.js' })

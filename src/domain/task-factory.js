@@ -26,7 +26,9 @@ class TaskFactory {
       }
     })
 
-    return new TaskCollection(tasks.reverse().map(obj => this.createOneFromNodes(obj)))
+    return new TaskCollection(
+      tasks.reverse().map(obj => this.createOneFromNodes(obj))
+    )
   }
 
   /**

@@ -37,9 +37,7 @@ describe('cli', () => {
     })
   })
 
-  describe('-s, --sequential option', () => {
-  })
+  describe('-s, --sequential option', () => {})
 
-  describe('-p, --parallel option', () => {
-  })
+  describe('-p, --parallel option', () => {})
 })

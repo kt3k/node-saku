@@ -72,7 +72,10 @@ class TaskCollection extends EventEmitter {
    * Runs the tasks sequentially.
    */
   async runSequential ({ cwd }) {
-    return this.tasks.reduce((p, task) => p.then(() => task.run({ cwd })), Promise.resolve())
+    return this.tasks.reduce(
+      (p, task) => p.then(() => task.run({ cwd })),
+      Promise.resolve()
+    )
   }
 }
 

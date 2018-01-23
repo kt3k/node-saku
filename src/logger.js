@@ -7,7 +7,7 @@ exports.logSaku = (...args) => {
   exports.log(`${colo.cyan(`[${pkg.name}]`)}`, ...args)
 }
 
-exports.logPlus = (message) => {
+exports.logPlus = message => {
   exports.log(`+${message}`)
 }
 
