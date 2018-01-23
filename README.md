@@ -20,18 +20,20 @@ First, create a markdown file `saku.md`:
 # build
 > Build the go binary.
 
-go build -v -i main.go
+    go build -v -i main.go
 
 # test
 > Run all the go tests.
 
-go test -race ./...
+    go test -race ./...
 
 # js
-minify -o public/script.js src/js
+
+    minify -o public/script.js src/js
 
 # css
-minify -o public/style.css src/css
+
+    minify -o public/style.css src/css
 ```
 
 The above defines 4 tasks `build` `test` `js` `css`. (A heading (#) is a task title!)
@@ -43,8 +45,8 @@ If you hit `saku --info` it shows the list of the descriptions of the all tasks.
 # `saku.md` Rules
 
 - Heading (# title) starts the task definition.
-- Paragraphs are commands.
-  - Paragraphs can have multiple commands. They will be executed sequentially.
+- Code blocks are commands.
+  - Code blocks can have multiple commands. They will be executed sequentially.
 - Blockquotes are description of the task.
 - Anything else is ignored.
 - Anything before the first heading is ignored.
@@ -55,8 +57,8 @@ For example:
 # build
 > Build the go binary.
 
-echo Starting build go binary
-go build -v -i main.go
+    echo Starting build go binary
+    go build -v -i main.go
 ```
 
 The above defines the task `build`, which has description `Build the go binary.`. It has two commands `echo Starting build go binary` and `go build -v -i main.go` and they runs in sequence.
@@ -76,15 +78,15 @@ If you need to invoke tasks from another task, use saku command in saku.md.
 ```md
 # js
 
-browserify src/main.js > build/app.js
+    browserify src/main.js > build/app.js
 
 # minify
 
-uglify-js < build/app.js > build/app.min.js
+    uglify-js < build/app.js > build/app.min.js
 
 # dist
 
-saku -s js minify
+    saku -s js minify
 ```
 
 If you need to invoke tasks in paralle l from another task, use saku command with `-p` option.
@@ -92,15 +94,15 @@ If you need to invoke tasks in paralle l from another task, use saku command wit
 ```md
 # watch
 
-my-watcher
+    my-watcher
 
 # serve
 
-my-server
+    my-server
 
 # start
 
-saku -p serve watch
+    saku -p serve watch
 ```
 
 # CLI Usage

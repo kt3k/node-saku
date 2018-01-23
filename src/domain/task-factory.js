@@ -3,12 +3,11 @@ const TaskCollection = require('./task-collection')
 const Task = require('./task')
 const {
   getStringValue,
-  getMultilineValue
+  getMultilineValue,
+  BLOCKQUOTE,
+  CODE,
+  HEADING
 } = require('../util/ast')
-
-const HEADING = 'heading'
-const PARAGRAPH = 'paragraph'
-const BLOCKQUOTE = 'blockquote'
 
 class TaskFactory {
   /**
@@ -43,8 +42,8 @@ class TaskFactory {
     nodes.forEach(node => {
       if (node.type === BLOCKQUOTE) {
         descriptions.push(...getMultilineValue(node.children[0]))
-      } else if (node.type === PARAGRAPH) {
-        commands.push(...getMultilineValue(node))
+      } else if (node.type === CODE) {
+        commands.push(...node.value.split('\n'))
       }
     })
 

@@ -2,6 +2,11 @@
  * utility about ast
  */
 
+exports.PARAGRAPH = 'paragraph'
+exports.BLOCKQUOTE = 'blockquote'
+exports.CODE = 'code'
+exports.HEADING = 'heading'
+
 /**
  * @param {Node} node
  * @return {string}
