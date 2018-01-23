@@ -46,7 +46,10 @@ If you hit `saku --info` it shows the list of the descriptions of the all tasks.
 
 ```md
     echo hello
+    echo world
 ```
+
+The above of is a code block of `echo hello` for the first line and `echo world` for the second line.
 
 # `saku.md` Rules
 
