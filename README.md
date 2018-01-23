@@ -106,17 +106,19 @@ saku -p serve watch
 # CLI Usage
 
 ```
-saku@0.1.0
-
 Usage: saku [options] <task, ...>
 
 Options:
-  -v, --version       Shows the version number and exits.
-  -h, --help          Shows the help message and exits.
-  -i, --info          Shows the task information and exits.
-  -p, --parallel      Runs tasks in parallel. Default false.
-  -s, --serial        Runs tasks in serial. Default true.
-  --cwd <path>        Sets the current directory.
+  -v, --version   - - Shows the version number and exits.
+  -h, --help  - - - - Shows the help message and exits.
+  -i, --info  - - - - Shows the task information and exits.
+  -p, --parallel  - - Runs tasks in parallel. Default false.
+  -s, --serial    - - Runs tasks in serial. Default true.
+  --cwd <path>    - - Sets the current directory.
+  -r, --race    - - - Set the flag to kill all tasks when a task
+                      finished with zero. This option is valid only
+                      with 'parallel' option.
+  -q, --quiet     - - Stops the logging.
 ```
 
 # Notes
