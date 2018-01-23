@@ -42,6 +42,12 @@ If you hit the command `saku build`, it invokes `build` task, `go build -v -i ma
 
 If you hit `saku --info` it shows the list of the descriptions of the all tasks.
 
+**Note**: 4-space or tab indent makes code block in markdown syntax. See [here](https://daringfireball.net/projects/markdown/syntax#precode)
+
+```md
+    echo hello
+```
+
 # `saku.md` Rules
 
 - Heading (# title) starts the task definition.
