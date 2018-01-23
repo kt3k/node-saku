@@ -70,11 +70,11 @@ For example:
     go build -v -i main.go
 ```
 
-The above defines the task `build`, which has description `Build the go binary.`. It has two commands `echo Starting build go binary` and `go build -v -i main.go` and they runs in sequence.
+The above defines the task `build`, which has the description `Build the go binary.`. It has two commands `echo Starting build go binary` and `go build -v -i main.go` and they run in sequence.
 
 ## Parallel execution
 
-`saku` command has `-p, --parallel` option. You can run task in parallel like the below:
+`saku` command has `-p, --parallel` option. You can run tasks in parallel like the below:
 
 ```
 saku -p watch-js run-server
