@@ -1,6 +1,6 @@
 {
   "name": "saku",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Markdown-based task runner",
   "main": "index.js",
   "bin": "./bin/saku.js",
