@@ -41,20 +41,4 @@ describe('cli', () => {
       })
     })
   })
-
-  describe('-s, --sequential option', () => {
-    it('runs tasks in sequence', () => {
-      const result = exec(`${cmd} -s hello world`)
-
-      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('series')}`))
-    })
-  })
-
-  describe('-p, --parallel option', () => {
-    it('runs tasks in parallel', () => {
-      const result = exec(`${cmd} -p hello world`)
-
-      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('parallel')}`))
-    })
-  })
 })
