@@ -63,10 +63,6 @@ Options:
    * Shows the task information
    */
   'action:info' () {
-    this['action:version']()
-
-    console.log()
-
     actionInfo(parse(this.getTaskFile()))
   }
 
