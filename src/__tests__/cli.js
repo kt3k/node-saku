@@ -3,6 +3,7 @@ const { execSync } = require('child_process')
 const pkg = require('../../package')
 const assert = require('assert')
 const { join } = require('path')
+const colo = require('colo')
 
 const execOpts = { cwd: join(__dirname, '..', '__fixture__') }
 const cmd = `node ${join(__dirname, '..', '..', 'bin', 'saku')}`
@@ -30,14 +31,26 @@ describe('cli', () => {
     it('shows the help message', () => {
       const result = exec(`${cmd} -i`)
 
-      assert(result.includes('task [hello]'))
-      assert(result.includes('task [parallel]'))
-      assert(result.includes('task [serial]'))
-      assert(result.includes('task [test]'))
+      assert(result.includes('  [hello]'))
+      assert(result.includes('  [parallel]'))
+      assert(result.includes('  [serial]'))
+      assert(result.includes('  [test]'))
     })
   })
 
-  describe('-s, --sequential option', () => {})
+  describe('-s, --sequential option', () => {
+    it('runs tasks in sequence', () => {
+      const result = exec(`${cmd} -s hello world`)
 
-  describe('-p, --parallel option', () => {})
+      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('series')}`))
+    })
+  })
+
+  describe('-p, --parallel option', () => {
+    it('runs tasks in parallel', () => {
+      const result = exec(`${cmd} -p hello world`)
+
+      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('parallel')}`))
+    })
+  })
 })

@@ -2,20 +2,24 @@
 > Says Hello
 > And exits
 
-echo hello
-echo saku
-echo task runner
+    echo hello
+
+# world
+> Says world
+> And exits
+
+    echo world
 
 # parallel
 > Says Hello in parallel
 > And exits
 
-/Users/kt3k/t/saku/bin/saku.js -p hello hello
+    node ../bin/saku.js -p hello world
 
 # serial
 > Says Hello in series
 > And exits
 
-/Users/kt3k/t/saku/bin/saku.js -s hello hello
+    node ../bin/saku.js -s hello world
 
 # test
