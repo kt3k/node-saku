@@ -1,13 +1,9 @@
-const { describe, it } = require('kocha')
-const { execSync } = require('child_process')
+const { describe, it, context } = require('kocha')
 const pkg = require('../../package')
 const assert = require('assert')
-const { join } = require('path')
 const colo = require('colo')
 
-const execOpts = { cwd: join(__dirname, '..', '__fixture__') }
-const cmd = `node ${join(__dirname, '..', '..', 'bin', 'saku')}`
-const exec = cmd => execSync(cmd, execOpts).toString()
+const { cmd, exec } = require('./helper')
 
 describe('cli', () => {
   describe('-v, --version option', () => {
@@ -35,6 +31,14 @@ describe('cli', () => {
       assert(result.includes('  [parallel]'))
       assert(result.includes('  [serial]'))
       assert(result.includes('  [test]'))
+    })
+
+    context('when saku.md is not found', () => {
+      it('exits with non-zero value', () => {
+        assert.throws(() => {
+          exec(`${cmd} -i`, { cwd: __dirname })
+        })
+      })
     })
   })
 
