@@ -3,7 +3,7 @@ const pkg = require('../../package')
 const assert = require('assert')
 const colo = require('colo')
 
-const { cmd, exec } = require('./helper')
+const { dir, cmd, exec } = require('./helper')
 
 describe('cli', () => {
   describe('-v, --version option', () => {
@@ -27,7 +27,9 @@ describe('cli', () => {
     it('shows the help message', () => {
       const result = exec(`${cmd} -i`)
 
+      assert(result.includes(`There are ${colo.magenta(5)} tasks`))
       assert(result.includes('  [hello]'))
+      assert(result.includes('  [world]'))
       assert(result.includes('  [parallel]'))
       assert(result.includes('  [serial]'))
       assert(result.includes('  [test]'))
@@ -38,6 +40,21 @@ describe('cli', () => {
         assert.throws(() => {
           exec(`${cmd} -i`, { cwd: __dirname })
         })
+      })
+    })
+
+    context('when saku.md has no task', () => {
+      it('shows message saying there is no task', () => {
+        const result = exec(`${cmd} -i`, { cwd: dir.noTask })
+
+        assert(result.includes('No tasks'))
+      })
+    })
+
+    context('when saku.md has 1 task', () => {
+      it('shows message saying there is 1 task', () => {
+        const result = exec(`${cmd} -i`, { cwd: dir.oneTask })
+        assert(result.includes(`There is ${colo.magenta(1)} task`))
       })
     })
   })
