@@ -1,4 +1,5 @@
 const colo = require('colo')
+const { INDENT_2, INDENT_4 } = require('../util/format')
 
 /**
  * Shows the information of tasks
@@ -13,9 +14,9 @@ module.exports = tasks => {
   }
 
   tasks.forEach(task => {
-    console.log(colo.cyan(`  [${task.name}]`))
+    console.log(colo.cyan(`${INDENT_2}[${task.name}]`))
     if (task.description) {
-      console.log(`    ${task.description.replace('\n', '\n  ')}`)
+      console.log(`${INDENT_4}${task.description.replace('\n', `\n${INDENT_4}`)}`)
     } else {
       console.log(colo.italic('    No description'))
     }
