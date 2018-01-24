@@ -17,3 +17,9 @@
 > Makes coverage reports
 
     npx nyc --reporter=text-summary --reporter=lcov saku test
+
+# codecov
+> Posts reports to codecov.io
+
+    saku cov
+    npx codecov

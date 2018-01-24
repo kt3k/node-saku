@@ -17,4 +17,5 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       - run: sudo npm i -g saku
       - run: saku test
+      - run: saku codecov
 
