@@ -1,5 +1,7 @@
 # saku (作) v0.5.0
 
+[![CircleCI](https://circleci.com/gh/kt3k/saku.svg?style=svg)](https://circleci.com/gh/kt3k/saku)
+
 > Markdown-based task runner
 
 requires `node` >= 8.x.
