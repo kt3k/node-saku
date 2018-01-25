@@ -1,19 +1,21 @@
 const { select } = require('action-selector')
 const parse = require('./parse-markdown')
 const fs = require('fs')
+const path = require('path')
 const colo = require('colo')
+
+const logger = require('./logger')
+const { prependEmoji } = require('./util/emoji')
 
 const actionInfo = require('./actions/info')
 const actionRun = require('./actions/run')
 
 const pkg = require('../package')
-const CLI_NAME = pkg.name
-const TASK_FILENAME = 'saku.md'
+const { CLI_NAME, DEFAULT_FILENAME } = pkg
 
 class Cli {
   constructor (argv) {
     this.argv = argv
-    this.cliName = CLI_NAME
   }
 
   main () {
@@ -42,8 +44,9 @@ class Cli {
 
   'action:help' () {
     this['action:version']()
+
     console.log(`
-Usage: ${colo.cyan(this.cliName)} [options] <task, ...>
+Usage: ${colo.cyan(CLI_NAME)} [options] <task, ...>
 
 Options:
   -v, --version   - - Shows the version number and exits.
@@ -67,10 +70,14 @@ Options:
   }
 
   getTaskFile () {
+    const fullPath = path.resolve(DEFAULT_FILENAME)
+
+    logger.log(`Read ${prependEmoji('🔍', colo.magenta(fullPath))}`)
+
     try {
-      return fs.readFileSync(TASK_FILENAME)
+      return fs.readFileSync(fullPath)
     } catch (e) {
-      console.log(`${colo.red('Error')}: ${TASK_FILENAME} not found`)
+      console.log(`${colo.red('Error')}: ${fullPath} not found`)
       process.exit(1)
     }
   }
@@ -79,6 +86,10 @@ Options:
    * Runs the tasks
    */
   async 'action:run' () {
+    if (this.argv.quiet) {
+      logger.quiet()
+    }
+
     actionRun(this.argv, parse(this.getTaskFile()))
   }
 }

@@ -9,7 +9,7 @@ describe('cli', () => {
     it('runs tasks in sequence', () => {
       const result = exec(`${cmd} -s hello world`)
 
-      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('series')}`))
+      assert(result.includes(`Run ${colo.magenta('hello, world')} in ${colo.cyan('sequence')}`))
     })
 
     context('with -q option', () => {
