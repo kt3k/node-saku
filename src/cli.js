@@ -2,7 +2,6 @@ const { select } = require('action-selector')
 const parse = require('./parse-markdown')
 const fs = require('fs')
 const colo = require('colo')
-const logger = require('./logger')
 
 const actionInfo = require('./actions/info')
 const actionRun = require('./actions/run')

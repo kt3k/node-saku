@@ -1,5 +1,4 @@
 const { describe, it, context } = require('kocha')
-const pkg = require('../../package')
 const assert = require('assert')
 const colo = require('colo')
 
