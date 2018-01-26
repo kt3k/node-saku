@@ -146,6 +146,14 @@ If your project is JavaScript project and it has `package.json`, then run-script
 
 Saku is the Japanese name for the Chinese character "作", which means "make". Saku is intended to be an alternative of `make` command (of a task runner use case).
 
+# Prior Art
+
+- [make][]
+- [npm-run-all][] by @mysticatea
+
 # License
 
 MIT
+
+[make]: https://en.wikipedia.org/wiki/Make_(software)
+[npm-run-all]: https://github.com/mysticatea/npm-run-all
