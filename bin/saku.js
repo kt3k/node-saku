@@ -7,7 +7,7 @@ require('minimisted')(
     new Cli(argv).main()
   },
   {
-    string: ['cwd'],
+    string: ['config'],
     boolean: [
       'version',
       'help',

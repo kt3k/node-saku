@@ -124,16 +124,16 @@ If you need to invoke tasks in parallel from another task, use `saku -p`.
 Usage: saku [options] <task, ...>
 
 Options:
-  -v, --version   - - Shows the version number and exits.
-  -h, --help  - - - - Shows the help message and exits.
-  -i, --info  - - - - Shows the task information and exits.
-  -p, --parallel  - - Runs tasks in parallel. Default false.
-  -s, --serial    - - Runs tasks in serial. Default true.
-  --cwd <path>    - - Sets the current directory.
-  -r, --race    - - - Set the flag to kill all tasks when a task
-                      finished with zero. This option is valid only
-                      with 'parallel' option.
-  -q, --quiet     - - Stops the logging.
+  -v, --version   - - - Shows the version number and exits.
+  -h, --help  - - - - - Shows the help message and exits.
+  -i, --info  - - - - - Shows the task information and exits.
+  -p, --parallel  - - - Runs tasks in parallel. Default false.
+  -s, --sequential  - - Runs tasks in serial. Default true.
+  -c, --config <path> - Specifies the config file. Default is 'saku.md'.
+  -r, --race  - - - - - Set the flag to kill all tasks when a task
+                        finished with zero. This option is valid only
+                        with 'parallel' option.
+  -q, --quiet   - - - - Stops the logging.
 ```
 
 # Notes

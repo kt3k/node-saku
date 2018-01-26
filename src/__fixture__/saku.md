@@ -23,3 +23,13 @@
     node ../bin/saku.js -s hello world
 
 # test
+
+# ls
+> List the files
+
+    ls
+
+# pwd
+> Show the present working directory
+
+    pwd

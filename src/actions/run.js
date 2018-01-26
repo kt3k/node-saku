@@ -1,9 +1,10 @@
+const path = require('path')
 const colo = require('colo')
 const logger = require('../logger')
 const { prependEmoji } = require('../util/emoji')
 
-module.exports = async (argv, allTasks) => {
-  const { cwd, parallel, quiet, race, sequential, _: taskNames } = argv
+module.exports = async (argv, allTasks, { cwd }) => {
+  const { parallel, quiet, race, sequential, _: taskNames } = argv
 
   if (quiet) {
     logger.quiet()
@@ -57,7 +58,7 @@ const logPhase = (phasePhrase, names, num, isParallel, isRace) => {
 }
 
 const logStart = (names, num, isParallel, isRace) => {
-  const phase = prependEmoji('🏃', 'Run ')
+  const phase = 'Run '
 
   logPhase(phase, names, num, isParallel, isRace)
 }

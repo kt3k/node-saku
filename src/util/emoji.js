@@ -12,7 +12,7 @@ exports.prependEmoji = (emoji, msg) => {
 
 exports.appendEmoji = (emoji, msg) => {
   if (process.stdout.isTTY) {
-    return `${msg}${emoji}  `
+    return `${msg} ${emoji} `
   }
 
   return msg

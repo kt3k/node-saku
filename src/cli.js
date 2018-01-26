@@ -43,22 +43,20 @@ class Cli {
   }
 
   'action:help' () {
-    this['action:version']()
-
     console.log(`
-Usage: ${colo.cyan(CLI_NAME)} [options] <task, ...>
+  Usage: ${colo.cyan(CLI_NAME)} [options] <task, ...>
 
-Options:
-  -v, --version   - - Shows the version number and exits.
-  -h, --help  - - - - Shows the help message and exits.
-  -i, --info  - - - - Shows the task information and exits.
-  -p, --parallel  - - Runs tasks in parallel. Default false.
-  -s, --serial    - - Runs tasks in serial. Default true.
-  --cwd <path>    - - Sets the current directory.
-  -r, --race    - - - Set the flag to kill all tasks when a task
-                      finished with zero. This option is valid only
-                      with 'parallel' option.
-  -q, --quiet     - - Stops the logging.
+  Options:
+    -v, --version   - - - Shows the version number and exits.
+    -h, --help  - - - - - Shows the help message and exits.
+    -i, --info  - - - - - Shows the task information and exits.
+    -p, --parallel  - - - Runs tasks in parallel. Default false.
+    -s, --sequential  - - Runs tasks in serial. Default true.
+    -c, --config <path> - Specifies the config file. Default is 'saku.md'.
+    -r, --race  - - - - - Set the flag to kill all tasks when a task
+                          finished with zero. This option is valid only
+                          with 'parallel' option.
+    -q, --quiet   - - - - Stops the logging.
 `)
   }
 
@@ -69,15 +67,23 @@ Options:
     actionInfo(parse(this.getTaskFile()))
   }
 
-  getTaskFile () {
-    const fullPath = path.resolve(DEFAULT_FILENAME)
+  getTaskFilename () {
+    const { config } = this.argv
 
-    logger.log(`Read ${prependEmoji('🔍', colo.magenta(fullPath))}`)
+    return path.resolve(config || DEFAULT_FILENAME)
+  }
+
+  getTaskFile () {
+
+    this.config = this.getTaskFilename()
+    this.cwd = path.dirname(this.config)
+
+    logger.log(`Read ${prependEmoji('🔍', colo.magenta(this.config))}`)
 
     try {
-      return fs.readFileSync(fullPath)
+      return fs.readFileSync(this.config)
     } catch (e) {
-      console.log(`${colo.red('Error')}: ${fullPath} not found`)
+      console.log(`${colo.red('Error')}: ${this.config} not found`)
       process.exit(1)
     }
   }
@@ -90,7 +96,7 @@ Options:
       logger.quiet()
     }
 
-    actionRun(this.argv, parse(this.getTaskFile()))
+    return actionRun(this.argv, parse(this.getTaskFile()), { cwd: this.cwd })
   }
 }
 
