@@ -17,8 +17,8 @@ describe('cli', () => {
         const result = exec(`${cmd} -pr sleep-1-then-foo sleep-2-then-bar`)
 
         assert(result.includes(`Run ${colo.magenta('sleep-1-then-foo, sleep-2-then-bar')} in ${colo.cyan('parallel-race')}`))
-        assert(result.includes('foo'))
-        assert(!result.includes('bar'))
+        assert(result.includes('+echo foo'))
+        assert(!result.includes('+echo bar'))
       })
     })
   })

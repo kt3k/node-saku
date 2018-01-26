@@ -27,7 +27,7 @@ describe('cli', () => {
     it('shows the help message', () => {
       const result = exec(`${cmd} -i`)
 
-      assert(result.includes(`There are ${colo.magenta(9)} tasks`))
+      assert(result.includes(`There are ${colo.magenta(10)} tasks`))
       assert(result.includes('  [hello]'))
       assert(result.includes('  [world]'))
       assert(result.includes('  [parallel]'))
