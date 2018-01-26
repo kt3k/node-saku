@@ -33,3 +33,21 @@
 > Show the present working directory
 
     pwd
+
+# sleep-1-then-foo
+> Sleeps 1 second, then says foo
+
+    sleep 1
+    echo foo
+
+# sleep-2-then-bar
+> Sleeps 2 seconds, then says bar
+
+    sleep 2
+    echo bar
+
+# spawn-sleep-2-then-baz
+> Spawns sleep 2 process, then says bar
+
+    sh -c "sleep 2"
+    echo baz

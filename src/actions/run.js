@@ -13,6 +13,7 @@ module.exports = async (argv, allTasks, { cwd }) => {
   taskNames.forEach(name => {
     if (!allTasks.isValidTaskName(name)) {
       console.log(`${colo.red('Error')}: Invalid task name: "${name}"`)
+      console.log(`Valid task names: ${colo.cyan(allTasks.taskNames.join(' '))}`)
       process.exit(1)
     }
   })

@@ -56,7 +56,13 @@ class TaskCollection extends EventEmitter {
    * Runs the tasks in parallel.
    */
   async runParallel ({ cwd }) {
-    return Promise.all(this.tasks.map(task => task.run({ cwd })))
+    try {
+      await Promise.all(this.tasks.map(task => task.run({ cwd })))
+    } catch (e) {
+      this.abort()
+
+      throw e
+    }
   }
 
   /**
@@ -65,7 +71,7 @@ class TaskCollection extends EventEmitter {
   async runInRace ({ cwd }) {
     await Promise.race(this.tasks.map(task => task.run({ cwd })))
 
-    this.tasks.forEach(task => task.abort())
+    this.abort()
   }
 
   /**
@@ -76,6 +82,13 @@ class TaskCollection extends EventEmitter {
       (p, task) => p.then(() => task.run({ cwd })),
       Promise.resolve()
     )
+  }
+
+  /**
+   * Aborts all the tasks.
+   */
+  abort () {
+    this.tasks.forEach(task => task.abort())
   }
 }
 

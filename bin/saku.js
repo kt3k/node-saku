@@ -21,6 +21,7 @@ require('minimisted')(
       v: 'version',
       h: 'help',
       i: 'info',
+      c: 'config',
       s: 'sequential',
       p: 'parallel',
       q: 'quiet',
