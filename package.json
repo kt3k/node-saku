@@ -37,6 +37,7 @@
     "codecov": "^3.0.0",
     "colo": "^0.3.2",
     "minimisted": "^2.0.0",
+    "ps-tree": "^1.1.0",
     "remark": "^9.0.0"
   },
   "devDependencies": {
@@ -46,7 +47,6 @@
     "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "prettier": "^1.10.2",
-    "ps-tree": "^1.1.0",
     "standard": "^10.0.3"
   },
   "CLI_NAME": "saku",
