@@ -1,4 +1,4 @@
-# saku (作) v0.10.0
+# saku (作) v0.10.1
 
 [![CircleCI](https://circleci.com/gh/kt3k/saku.svg?style=svg)](https://circleci.com/gh/kt3k/saku)
 [![Greenkeeper badge](https://badges.greenkeeper.io/kt3k/saku.svg)](https://greenkeeper.io/)
