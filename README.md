@@ -150,6 +150,9 @@ Saku is the Japanese name for the Chinese character "作", which means "make". S
 
 - [make][]
 - [npm-run-all][] by @mysticatea
+- yaml-based tools
+  - [robo][]
+  - [go-task][]
 
 # License
 
@@ -157,3 +160,5 @@ MIT
 
 [make]: https://en.wikipedia.org/wiki/Make_(software)
 [npm-run-all]: https://github.com/mysticatea/npm-run-all
+[robo]: https://github.com/tj/robo
+[go-task]: https://github.com/go-task/task
