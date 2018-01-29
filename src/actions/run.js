@@ -1,10 +1,9 @@
-const path = require('path')
 const colo = require('colo')
 const logger = require('../logger')
 const { prependEmoji } = require('../util/emoji')
 
 module.exports = async (argv, allTasks, { cwd }) => {
-  const { parallel, quiet, race, sequential, _: taskNames } = argv
+  const { parallel: isParallel, quiet, race: isRace, sequential: isSequential, _: taskNames } = argv
 
   if (quiet) {
     logger.quiet()
@@ -25,7 +24,7 @@ module.exports = async (argv, allTasks, { cwd }) => {
     logger.logPlus(command)
   })
 
-  if (parallel && sequential) {
+  if (isParallel && isSequential) {
     console.log(
       `${colo.red('Error')}: both --parallel and --sequential are set`
     )
@@ -33,17 +32,21 @@ module.exports = async (argv, allTasks, { cwd }) => {
     process.exit(1)
   }
 
-  logStart(names, tasks.length, parallel, race)
+  logStart(names, tasks.length, isParallel, isRace)
 
-  if (parallel && race) {
-    await tasks.runInRace({ cwd })
-  } else if (parallel) {
-    await tasks.runParallel({ cwd })
-  } else {
-    await tasks.runSequential({ cwd })
+  try {
+    await tasks.run({ cwd, isParallel, isRace })
+
+    logFinish(names, tasks.length, isParallel, isRace)
+  } catch (e) {
+    if (e.task) {
+      console.log(`${colo.red('Error')}: task ${colo.magenta(e.task.name)} failed`)
+
+      process.exit(1)
+    }
+
+    throw e
   }
-
-  logFinish(names, tasks.length, parallel, race)
 }
 
 /**
@@ -73,11 +76,11 @@ const logFinish = (names, num, isParallel, isRace) => {
 const labelConcurrency = (num, isParallel, isRace) => {
   if (num === 1) {
     return ''
-  } else if (isParallel && isRace) {
-    return ` in ${colo.cyan('parallel-race')}`
-  } else if (isParallel) {
-    return ` in ${colo.cyan('parallel')}`
-  } else {
+  } else if (!isParallel) {
     return ` in ${colo.cyan('sequence')}`
+  } else if (isRace) {
+    return ` in ${colo.cyan('parallel-race')}`
+  } else {
+    return ` in ${colo.cyan('parallel')}`
   }
 }

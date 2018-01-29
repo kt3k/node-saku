@@ -52,6 +52,16 @@ class TaskCollection extends EventEmitter {
     return new TaskCollection(names.map(name => this.getByName(name)))
   }
 
+  async run ({ cwd, isParallel, isRace }) {
+    if (!isParallel) {
+      return this.runSequential({ cwd })
+    } else if (isRace) {
+      return this.runParallelRace({ cwd })
+    } else {
+      return this.runParallel({ cwd })
+    }
+  }
+
   /**
    * Runs the tasks in parallel.
    */
@@ -68,8 +78,14 @@ class TaskCollection extends EventEmitter {
   /**
    * Runs the task in parallel and abort them when the first one finished.
    */
-  async runInRace ({ cwd }) {
-    await Promise.race(this.tasks.map(task => task.run({ cwd })))
+  async runParallelRace ({ cwd }) {
+    try {
+      await Promise.race(this.tasks.map(task => task.run({ cwd })))
+    } catch (e) {
+      this.abort()
+
+      throw e
+    }
 
     this.abort()
   }

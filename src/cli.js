@@ -74,7 +74,6 @@ class Cli {
   }
 
   getTaskFile () {
-
     this.config = this.getTaskFilename()
     this.cwd = path.dirname(this.config)
 

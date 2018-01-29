@@ -51,3 +51,8 @@
 
     sh -c "sleep 2"
     echo baz
+
+# error
+> Errors
+
+    no-command

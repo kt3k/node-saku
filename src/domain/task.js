@@ -43,11 +43,17 @@ class Task extends EventEmitter {
 
     const { file, args, opts } = this.createSpawnParams(command)
 
-    const promise = spawn(file, args, Object.assign({}, opts, { cwd, stdio: 'inherit' }))
+    try {
+      const promise = spawn(file, args, Object.assign({}, opts, { cwd, stdio: 'inherit' }))
 
-    this.child = promise.child
+      this.child = promise.child
 
-    await promise
+      await promise
+    } catch (e) {
+      e.task = this
+
+      throw e
+    }
   }
 
   /**
@@ -57,12 +63,12 @@ class Task extends EventEmitter {
     const opts = { opts: {} }
 
     if (process.platform === 'win32') {
-      opts.file = 'cmd.exe';
-      opts.args = ['/s', '/c', '"' + command + '"'];
-      opts.opts.windowsVerbatimArguments = true;
+      opts.file = 'cmd.exe'
+      opts.args = ['/s', '/c', '"' + command + '"']
+      opts.opts.windowsVerbatimArguments = true
     } else {
-      opts.file = '/bin/sh';
-      opts.args = ['-c', command];
+      opts.file = '/bin/sh'
+      opts.args = ['-c', command]
     }
 
     return opts
@@ -73,6 +79,10 @@ class Task extends EventEmitter {
    * TODO: windows support
    */
   abort () {
+    if (this.aborted) {
+      return
+    }
+
     this.aborted = true
 
     getDescendentProcessInfo(this.child.pid, (err, descendent) => {
