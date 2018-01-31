@@ -1,4 +1,4 @@
-# saku (作) v0.10.1
+# saku (作) v0.11.0
 
 [![CircleCI](https://circleci.com/gh/kt3k/saku.svg?style=svg)](https://circleci.com/gh/kt3k/saku)
 [![Greenkeeper badge](https://badges.greenkeeper.io/kt3k/saku.svg)](https://greenkeeper.io/)
@@ -155,6 +155,10 @@ Saku is the Japanese name for the Chinese character "作", which means "make". S
 - yaml-based tools
   - [robo][]
   - [go-task][]
+
+# History
+
+- 2018-01-31   v0.11.0   Pass options after `--`.
 
 # License
 
