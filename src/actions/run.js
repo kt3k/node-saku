@@ -3,7 +3,7 @@ const logger = require('../logger')
 const { prependEmoji } = require('../util/emoji')
 
 module.exports = async (argv, allTasks, { cwd }) => {
-  const { parallel: isParallel, quiet, race: isRace, sequential: isSequential, _: taskNames } = argv
+  const { parallel: isParallel, quiet, race: isRace, sequential: isSequential, _: taskNames, '--': extOpts } = argv
 
   if (quiet) {
     logger.quiet()
@@ -35,7 +35,7 @@ module.exports = async (argv, allTasks, { cwd }) => {
   logStart(names, tasks.length, isParallel, isRace)
 
   try {
-    await tasks.run({ cwd, isParallel, isRace })
+    await tasks.run({ cwd, isParallel, isRace, extOpts })
 
     logFinish(names, tasks.length, isParallel, isRace)
   } catch (e) {

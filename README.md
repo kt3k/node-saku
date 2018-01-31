@@ -121,7 +121,7 @@ If you need to invoke tasks in parallel from another task, use `saku -p`.
 # CLI Usage
 
 ```
-Usage: saku [options] <task, ...>
+Usage: saku [options] <task, ...> [-- extra-options]
 
 Options:
   -v, --version   - - - Shows the version number and exits.
@@ -134,6 +134,8 @@ Options:
                         finished with zero. This option is valid only
                         with 'parallel' option.
   -q, --quiet   - - - - Stops the logging.
+
+The extra options after '--' are passed to each task command.
 ```
 
 # Notes

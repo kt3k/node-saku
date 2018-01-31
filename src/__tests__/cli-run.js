@@ -36,4 +36,13 @@ describe('cli', () => {
       })
     })
   })
+
+  describe('options after --', () => {
+    it('are passed as extra options to the commands', () => {
+      const result = exec(`${cmd} -s hello world -- foo`)
+
+      assert(result.includes('hello foo'))
+      assert(result.includes('world foo'))
+    })
+  })
 })
