@@ -52,22 +52,28 @@ class TaskCollection extends EventEmitter {
     return new TaskCollection(names.map(name => this.getByName(name)))
   }
 
-  async run ({ cwd, isParallel, isRace }) {
+  /**
+   * @param {string} cwd
+   * @param {boolean} isParallel
+   * @param {boolean} isRace
+   * @param {string[]} extOpts The extra options
+   */
+  async run ({ cwd, isParallel, isRace, extOpts }) {
     if (!isParallel) {
-      return this.runSequential({ cwd })
+      return this.runSequential({ cwd, extOpts })
     } else if (isRace) {
-      return this.runParallelRace({ cwd })
+      return this.runParallelRace({ cwd, extOpts })
     } else {
-      return this.runParallel({ cwd })
+      return this.runParallel({ cwd, extOpts })
     }
   }
 
   /**
    * Runs the tasks in parallel.
    */
-  async runParallel ({ cwd }) {
+  async runParallel ({ cwd, extOpts }) {
     try {
-      await Promise.all(this.tasks.map(task => task.run({ cwd })))
+      await Promise.all(this.tasks.map(task => task.run({ cwd, extOpts })))
     } catch (e) {
       this.abort()
 
@@ -78,9 +84,9 @@ class TaskCollection extends EventEmitter {
   /**
    * Runs the task in parallel and abort them when the first one finished.
    */
-  async runParallelRace ({ cwd }) {
+  async runParallelRace ({ cwd, extOpts }) {
     try {
-      await Promise.race(this.tasks.map(task => task.run({ cwd })))
+      await Promise.race(this.tasks.map(task => task.run({ cwd, extOpts })))
     } catch (e) {
       this.abort()
 
@@ -93,9 +99,9 @@ class TaskCollection extends EventEmitter {
   /**
    * Runs the tasks sequentially.
    */
-  async runSequential ({ cwd }) {
+  async runSequential ({ cwd, extOpts }) {
     return this.tasks.reduce(
-      (p, task) => p.then(() => task.run({ cwd })),
+      (p, task) => p.then(() => task.run({ cwd, extOpts })),
       Promise.resolve()
     )
   }

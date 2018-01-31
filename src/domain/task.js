@@ -22,9 +22,9 @@ class Task extends EventEmitter {
   /**
    * Runs all the commands sequentially.
    */
-  async run ({ cwd }) {
+  async run ({ cwd, extOpts }) {
     return this.commands.reduce(
-      (p, command) => p.then(() => this.runSingle(command, { cwd })),
+      (p, command) => p.then(() => this.runSingle(command, { cwd, extOpts })),
       Promise.resolve()
     )
   }
@@ -33,10 +33,14 @@ class Task extends EventEmitter {
    * @param {string} command The command
    * @param {string} cwd The working dir
    */
-  async runSingle (command, { cwd }) {
+  async runSingle (command, { cwd, extOpts }) {
     if (this.aborted) {
       // does nothing, stop immediately if the task is aborted
       return
+    }
+
+    if (extOpts) {
+      command = `${command} ${extOpts.join(' ')}`
     }
 
     this.emit('task', { task: this, command })

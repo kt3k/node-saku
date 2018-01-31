@@ -57,6 +57,8 @@ class Cli {
                           finished with zero. This option is valid only
                           with 'parallel' option.
     -q, --quiet   - - - - Stops the logging.
+
+  The extra options after '--' are passed to each task command.
 `)
   }
 

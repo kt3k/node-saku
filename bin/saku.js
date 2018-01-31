@@ -26,6 +26,7 @@ require('minimisted')(
       p: 'parallel',
       q: 'quiet',
       r: 'race'
-    }
+    },
+    '--': true
   }
 )
