@@ -47,7 +47,7 @@
     "nyc": "^11.4.1",
     "power-assert": "^1.4.4",
     "prettier": "^1.10.2",
-    "standard": "^10.0.3"
+    "standard": "^11.0.0"
   },
   "CLI_NAME": "saku",
   "DEFAULT_FILENAME": "saku.md"
