@@ -1,0 +1,7 @@
+install:
+  - ps: Install-Product node 8
+  - npm i -g saku
+  - npm i
+build: off
+test_script:
+  - npm test
