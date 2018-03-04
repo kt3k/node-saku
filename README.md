@@ -141,6 +141,13 @@ The extra options after '--' are passed to each task command.
 
 # Notes
 
+## Example use cases
+
+- [moneybit-app](https://github.com/kt3k/moneybit-app)'s [saku.md](https://github.com/kt3k/moneybit-app/blob/master/saku.md)
+  - A project of accounting app for mobile, written in JavaScript.
+
+**Note**: Please add yours if you use saku in OSS project!
+
 ## Why not just use run-script?
 
 If your project is JavaScript project and it has `package.json`, then run-script is probably enough for your use case. The main target of `saku` is non-javascript project where no good task runner is available.
