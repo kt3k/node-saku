@@ -146,7 +146,7 @@ The extra options after '--' are passed to each task command.
 - [moneybit-app](https://github.com/kt3k/moneybit-app)'s [saku.md](https://github.com/kt3k/moneybit-app/blob/master/saku.md)
   - A project of accounting app for mobile, written in JavaScript.
 
-**Note**: Please add yours if you use saku in OSS project!
+**Note**: Please add yours if you use saku in your OSS project!
 
 ## Why not just use run-script?
 
