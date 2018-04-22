@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kt3k/saku.git"
+    "url": "git+https://github.com/kt3k/node-saku.git"
   },
   "keywords": [
     "make",
@@ -28,9 +28,9 @@
   "author": "Yoshiya Hinosawa",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kt3k/saku/issues"
+    "url": "https://github.com/kt3k/node-saku/issues"
   },
-  "homepage": "https://github.com/kt3k/saku#readme",
+  "homepage": "https://github.com/kt3k/node-saku#readme",
   "dependencies": {
     "@expo/spawn-async": "^1.3.0",
     "action-selector": "^1.0.1",
