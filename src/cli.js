@@ -44,7 +44,7 @@ class Cli {
 
   'action:help' () {
     console.log(`
-  Usage: ${colo.cyan(CLI_NAME)} [options] <task, ...>
+  Usage: ${colo.cyan(CLI_NAME)} [options] <task, ...> [-- extra-options]
 
   Options:
     -v, --version   - - - Shows the version number and exits.
