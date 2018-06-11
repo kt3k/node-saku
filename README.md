@@ -1,4 +1,4 @@
-# saku (作) v0.11.1
+# saku (作) v0.11.2
 
 [![CircleCI](https://circleci.com/gh/kt3k/saku.svg?style=svg)](https://circleci.com/gh/kt3k/saku)
 [![Build status](https://ci.appveyor.com/api/projects/status/xf9523fl2ba2bdme?svg=true)](https://ci.appveyor.com/project/kt3k/saku)
