@@ -21,7 +21,7 @@ Via npm:
 
 First, create a markdown file `saku.md`:
 
-```md
+````markdown
 # build
 > Build the go binary.
 
@@ -39,7 +39,7 @@ First, create a markdown file `saku.md`:
 # css
 
     minify -o public/style.css src/css
-```
+````
 
 The above defines 4 tasks `build` `test` `js` `css`. (A heading (#) is a task title!)
 
@@ -49,10 +49,10 @@ If you hit `saku --info` it shows the list of the descriptions of the all tasks.
 
 **Note**: 4-space or tab indent makes code block in markdown syntax. See [here](https://daringfireball.net/projects/markdown/syntax#precode)
 
-```md
+````markdown
     echo hello
     echo world
-```
+````
 
 The above is a code block of `echo hello` for the first line and `echo world` for the second line.
 
@@ -67,13 +67,13 @@ The above is a code block of `echo hello` for the first line and `echo world` fo
 
 For example:
 
-```
+````markdown
 # build
 > Build the go binary.
 
     echo Starting build go binary
     go build -v -i main.go
-```
+````
 
 The above defines the task `build`, which has the description `Build the go binary.`. It has two commands `echo Starting build go binary` and `go build -v -i main.go` and they run in sequence.
 
@@ -89,7 +89,7 @@ saku -p watch-js run-server
 
 If you need to invoke tasks from another task, use saku command in saku.md.
 
-```md
+````markdown
 # js
 
     browserify src/main.js > build/app.js
@@ -101,11 +101,11 @@ If you need to invoke tasks from another task, use saku command in saku.md.
 # dist
 
     saku -s js minify
-```
+````
 
 If you need to invoke tasks in parallel from another task, use `saku -p`.
 
-```md
+````markdown
 # watch
 
     my-watcher
@@ -117,7 +117,7 @@ If you need to invoke tasks in parallel from another task, use `saku -p`.
 # start
 
     saku -p serve watch
-```
+````
 
 # CLI Usage
 
