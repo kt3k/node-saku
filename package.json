@@ -38,7 +38,7 @@
     "colo": "^1.0.0",
     "minimisted": "^2.0.0",
     "ps-tree": "^1.2.0",
-    "remark": "^11.0.0"
+    "remark": "^11.0.2"
   },
   "devDependencies": {
     "espower-loader": "^1.2.2",
