@@ -206,6 +206,11 @@ action-selector@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/action-selector/-/action-selector-1.0.1.tgz#5ef40ded3321fd1df92e1536db3d2f2ad0ddc6e1"
 
+action-selector@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/action-selector/-/action-selector-1.0.2.tgz#0a175266fa187082912c4ec0c4738acb4bf932a9"
+  integrity sha512-OlH4OkQV5Y0TbH677m9AsO7hwCcVyywjtPG9eMYyk2l/DzqEySVm+vRrrrqbZD0fJM72hUutPYkI5FvkuE5RmQ==
+
 agent-base@5:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-5.1.1.tgz#e8fb3f242959db44d63be665db7a8e739537a32c"
