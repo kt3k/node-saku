@@ -34,7 +34,7 @@
   "dependencies": {
     "@expo/spawn-async": "^1.5.0",
     "action-selector": "^1.0.1",
-    "codecov": "^3.7.1",
+    "codecov": "^3.7.2",
     "colo": "^1.0.0",
     "minimisted": "^2.0.0",
     "ps-tree": "^1.2.0",
