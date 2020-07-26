@@ -36,7 +36,7 @@
     "action-selector": "^1.0.1",
     "codecov": "^3.7.1",
     "colo": "^1.0.0",
-    "minimisted": "^2.0.0",
+    "minimisted": "^2.0.1",
     "ps-tree": "^1.2.0",
     "remark": "^11.0.2"
   },
