@@ -32,7 +32,7 @@
   },
   "homepage": "https://github.com/kt3k/node-saku#readme",
   "dependencies": {
-    "@expo/spawn-async": "^1.5.0",
+    "@expo/spawn-async": "^1.6.0",
     "action-selector": "^1.0.1",
     "codecov": "^3.8.3",
     "colo": "^1.0.0",
